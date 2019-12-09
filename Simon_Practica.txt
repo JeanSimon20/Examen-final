@@ -1,0 +1,29 @@
+-- Crear un directorio con datos completo de clientes considerando: Nombres y Apellidos en una sola columna, teléfono, correo electrónico, dirección, distrito y país respectivo. Ordenado de forma ascendente por el nombre de País. 
+select
+concat(customer.first_name,' ',customer.last_name) AS CLIENTE,
+address.phone AS TELEFONO,
+customer.email AS CORREO_ELECTRONICO, 
+address.address AS DIRECCION,
+address.district AS DISTRITO,
+country.country AS PAIS
+from customer
+inner join address on customer.address_id = address.address
+inner join city on address.city_id = city.city_id
+inner join country on city.country_id = country.country_id
+order by country asc;
+-- Visualizar el título de la película, nombre y apellido del actor principal en una sola columna, descripción e idioma de la película. Ordenado en forma ascendente por el título de la película. 
+select
+film.title AS PELICULA,
+concat(actor.first_name,'',actor.last_name) AS ACTOR,
+film.description AS DESCRIPCION,
+language.name AS IDIOMA
+from film
+inner join language on film.language_id = language.language_id
+inner join film_actor on film.film_id = film_actor.film_id
+inner join actor on film_actor.actor_id = actor.actor_id
+order by film.title asc;
+-- Obtener el código de renta así como los datos del empleado y cliente, la película que alquiló y lo que pagó respectivamente por ese alquiler. Los datos deben ser ordenados de acuerdo al empleado. 
+select * from rental;
+-- Obtener los datos del empleado, a cuántos clientes ha atendido y cuánto ha recaudado por los alquileres que  realizó. 
+select first_name as Nombre, last_name as apellido from staff;
+-- Obtener las categorías cuya cantidad de películas sea igual o mayor que 300. Ordenado de forma descendente por cantidad de películas.
